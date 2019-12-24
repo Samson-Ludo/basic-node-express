@@ -42,17 +42,12 @@ app.get("/json", (req, res) => {
   }
   res.json({
         "message": "Hello json"
-      }) 
+      })
 })
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
-app.use(function middleware(req, res, next) {
-  app.get("/json", (req, res) => {
-  res.json({
-    "message": "Hello json"
-  }) 
-})
-  console.log(req.method + " " + req.path + " - " + req.ip);
+app.get('/json', function middleware(req, res, next) {
+  console.log(`$(req.method) $(req.path) - $(req.ip)`);
   // Call the next function in line:
   next();
 });
