@@ -27,6 +27,14 @@ app.use("", express.static(__dirname + '/public'))
 
 /** 5) serve JSON on a specific route */
 app.get("/json", (req, res) => {
+  res.json({
+    "message": "Hello json"
+  }) 
+})
+
+/** 6) Use the .env file to configure the app */
+ 
+ app.get("/json", (req, res) => {
   if (process.env.MESSAGE_STYLE === "uppercase") {
       res.json({
       "message": "Hello json".toUpperCase()
@@ -36,13 +44,17 @@ app.get("/json", (req, res) => {
         "message": "Hello json"
       }) 
 })
-
-/** 6) Use the .env file to configure the app */
- 
- 
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
-
+app.use((req, res, next) => {
+  app.get("/json", (req, res) => {
+  res.json({
+    "message": "Hello json"
+  }) 
+})
+  console.log("GET /json - ::ffff:127.0.0.1");
+  next();
+})
 
 /** 8) Chaining middleware. A Time server */
 
