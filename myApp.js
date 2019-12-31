@@ -51,7 +51,7 @@ app.use(function middleware(req, res, next) {
   console.log(logMsg);
   // Call the next function in line:
   next();
-});
+}); 16286284419
   
 
 /** 8) Chaining middleware. A Time server */
