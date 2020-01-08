@@ -1,4 +1,4 @@
-
+var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 
@@ -12,7 +12,7 @@ app.use(function(req, res, next) {
 }); 
 
 // --> 11)  Mount the body-parser middleware  here
-
+app.use(bodyParser.urlencoded({extended: false}));
 
 /** 1) Meet the node console. */
 console.log("Hello world");
@@ -89,7 +89,11 @@ app.get('/name', (req, res) => {
 
 /** 12) Get data form POST  */
 
-
+app.post("/name", (req, res) => {
+  var string = `${req.body.first} ${req.body.las}`;
+  
+  res.json({ name: string });
+});
 
 // This would be part of the basic setup of an Express app
 // but to allow FCC to run tests, the server is already active
