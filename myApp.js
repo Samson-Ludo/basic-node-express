@@ -89,9 +89,9 @@ app.get('/name', (req, res) => {
 
 /** 12) Get data form POST  */
 
-app.post("/name", (req, res) => {
-  var string = `${req.body.first} ${req.body.las}`;
-  
+app.post("/name", function(req, res) {
+  // Handle the data in the request
+  var string = req.body.first + " " + req.body.last;
   res.json({ name: string });
 });
 
